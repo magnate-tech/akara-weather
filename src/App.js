@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//Importing Axios to easily use API
 import axios from "axios";
 
 function App() {
@@ -6,9 +7,13 @@ function App() {
     url: "https://api.openweathermap.org/data/2.5/weather/?q=",
     key: "46e33ef1fc69cc04a849d09a36246b78",
   };
+  //Dynamic storage of Data from API
   const [data, setData] = useState({});
+  //Dynamic storage for Location to be searched
   const [location, setLocation] = useState("");
+  //API LINK
   const apiLink = `${api.url}${location}&units=metric&appid=${api.key}`;
+  //Function to get data from API on execution of an event
   const searchLocation = (event) => {
     if (event.key === "Enter") {
       axios.get(apiLink).then((response) => {
@@ -47,6 +52,7 @@ function App() {
             ) : null}
           </div>
         </div>
+        {/*Data in body would not display until a sucsessful response is gotten from the API */}
         {data.name !== undefined && (
           <div className="bottom">
             <div className="feels">
